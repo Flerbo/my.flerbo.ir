@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <!-- 
+        This Is A MVP ..
+        It's Supposed To Be SHIT (Code And Product).
+        So, Get Over It!
+    -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" type="image/png" href="favicon.ico">
+    
+    <title>استیکر لپتاپ فلربو - لپتاپ چین</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css">
+    <link rel="stylesheet" href="style/index.css">
+</head>
+<body class="white">
+    <header>
+        <div class="wave">
+            <svg width="100%" height="100%" viewBox="0 0 1440 43" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink">
+                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                    <g transform="translate(0.000000, -39.000000)" fill="#FFFFFF" fill-rule="nonzero">
+                        <path d="M1.25055521e-12,57 C284.679475,33 524.867531,33 720.564169,57 C916.260807,81 1156.11553,81 1440.12834,57 L1440.12834,82 L1.25055521e-12,82 L1.25055521e-12,57 Z"></path>
+                    </g>
+                </g>
+            </svg>
+        </div>
+        <nav class="white container">
+            <div class="row full-height align-content-middle">
+                <div class="all-auto no-padding">
+                    <a href="https://flerbo.ir/?utm_source=myflerbo&utm_campaign=mvp&utm_content=logo" class="link">
+                        <img src="images/logo.png" alt="فلربو">
+                    </a>
+                </div>
+                <div class="all-auto no-padding align-left">
+                    <a href="https://flerbo.ir/?utm_source=myflerbo&utm_campaign=mvp&utm_content=desktop_back" class="link grey-darken-3-text purple-text-hover">بازگشت به سایت فلربو</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="preview">
+        <div class="container full-height">
+            <div class="row full-height">
+                <div class="all-4 full-height no-gaps">
+                    <div class="stickers-warpper blue-grey-lighten-5 full-height">
+                        <div data-simplebar>
+                            <div id="stickers" class="row padding"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="all-8 align-middle">
+                    <div class="align-center">
+                        <div class="laptop-wrapper">
+                            <img class="laptop" src="images/laptops/lenovo-laptop-thinkpad-l570.png" width="500px" alt="">
+                            <div class="sticker-wrapper">
+                                <canvas id="canvas"></canvas>
+                            </div>
+                            <h3 dir="ltr" lang="en">Lenovo Thinkpad L570 - 15.6"</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="no-mobile grey-darken-4">
+        <div class="container full-height">
+            <div class="row full-height align-content-middle">
+                <div class="all-12 grey-lighten-3-text align-center">
+                    <h1 class="no-margin">استیکر لپتاپ فلربو<br><small class="grey-lighten-1-text">لپتاپ چین</small></h1>
+                    <p class="padding">متاسفانه این نسخه‌ از <em>لپتاپ چین</em> برای صفحات کوچک بهینه سازی نشده است. لطفا با لپتاپ به این صفحه مراجعه کنید.</p>
+                    <a href="https://flerbo.ir/?utm_source=myflerbo&utm_campaign=mvp&utm_content=mobile_back" class="button medium red-lighten-1 link round-corner white-text">بازگشت به فلربو</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.7.22/fabric.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.js"></script>
+<script src="http://my.flerbo.ikacc.ir/mvp/stickers/db.js"></script>
+<script>
+    const base_url = 'http://my.flerbo.ikacc.ir/mvp';
+    
+    // Add Sticker Images To List When Fully Loaded
+    document.addEventListener("DOMContentLoaded", function (event) {
+        let wrapper = document.querySelector('#stickers');
+        stickers.forEach(sticker => {
+            if (sticker.image) {
+                let coming_soon = sticker.coming_soon ? '<small class="round-corner red-lighten-1 white-text">بزودی</small>' : '';
+                let markup = `
+                    <div class="all-3">
+                        <div class="select-sticker" 
+                            onclick="addImage(${sticker.id})"
+                            title="استیکر ${sticker.name}">
+                            ${coming_soon}
+                            <img src="${base_url}/stickers/${sticker.image}" alt="${sticker.name}" class="responsive">
+                        </div>
+                    </div>`
+                wrapper.innerHTML += markup
+            }
+        })
+    });  
+    
+    // Canvas Stuff
+    var canvas = new fabric.Canvas('canvas', {
+        width: 500,
+        height: 336.3636363636364,
+
+    });
+    fabric.Group.prototype._controlsVisibility = {
+        tl: false,
+        tr: false,
+        br: false,
+        bl: false,
+        ml: false,
+        mt: false,
+        mr: false,
+        mb: false,
+        mtr: true
+    };
+    function addImage(stickerId) {
+        let sticker = stickers.find(sticker => {
+            return sticker.id === stickerId;
+        });
+        fabric.Image.fromURL(`${base_url}/stickers/${sticker.image}`, img => {
+            // Sticker Preview Width = Sticker Actual Width * (Laptop Preview Width / Laptop Actual Width)
+            if (sticker.size.width) {
+                img.set({
+                    width: sticker.size.width * (500 / 10),
+                    height: sticker.size.width * (500 / 10)
+                });
+            } else {
+                img.set({
+                    width: sticker.size.height * (500 / 10),
+                    height: sticker.size.height * (500 / 10)
+                });
+            }
+            img.setControlsVisibility({
+                mt: false,
+                mb: false,
+                ml: false,
+                mr: false,
+                bl: false,
+                br: false,
+                tl: false,
+                tr: false,
+                mtr: true,
+            });
+            img.setShadow({
+                color: '#00000030',
+                blur: 1,
+                offsetX: 1,
+                offsetY: 1
+            });
+            canvas.centerObject(img);
+            canvas.add(img);
+        });
+    }
+</script>
