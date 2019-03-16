@@ -1,0 +1,7 @@
+.nuxt
+main.js
+dist
+static
+node_modules
+.DS_Store
+vendors

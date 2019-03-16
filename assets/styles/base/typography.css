@@ -1,0 +1,170 @@
+html {
+    font-size: 62.5%;
+}
+
+/* * {
+    -webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	&::selection {
+		color: $orange-darken-2;
+		background: color($orange a(10%));
+	}
+} */
+
+@font-face {
+	font-family: YekanBakh;
+	font-style: normal;
+	font-weight: 300;
+	src: url('../../fonts/YekanBakh/YekanBakh-Thin.woff');
+}
+
+@font-face {
+	font-family: YekanBakh;
+	font-style: normal;
+	font-weight: normal;
+	src: url('../../fonts/YekanBakh/YekanBakh-Regular.woff');
+}
+
+@font-face {
+	font-family: YekanBakh;
+	font-style: normal;
+	font-weight: 500;
+	src: url('../../fonts/YekanBakh/YekanBakh-Medium.woff');
+}
+
+@font-face {
+	font-family: YekanBakh;
+	font-style: normal;
+	font-weight: Bold;
+	src: url('../../fonts/YekanBakh/YekanBakh-Bold.woff');
+}
+
+@font-face {
+	font-family: YekanBakh;
+	font-style: normal;
+	font-weight: 900;
+	src: url('../../fonts/YekanBakh/YekanBakh-Heavy.woff');
+}
+
+@font-face {
+	font-family: Vazir;
+	font-style: normal;
+	font-weight: 300;
+	src: url('../../fonts/Vazir/Vazir-Thin.woff');
+}
+
+@font-face {
+	font-family: Vazir;
+	font-style: normal;
+	font-weight: normal;
+	src: url('../../fonts/Vazir/Vazir.woff');
+}
+
+@font-face {
+	font-family: Vazir;
+	font-style: normal;
+	font-weight: 500;
+	src: url('../../fonts/Vazir/Vazir-Medium.woff');
+}
+
+@font-face {
+	font-family: Vazir;
+	font-style: normal;
+	font-weight: Bold;
+	src: url('../../fonts/Vazir/Vazir-Bold.woff');
+}
+
+@font-face {
+	font-family: Vazir;
+	font-style: normal;
+	font-weight: 900;
+	src: url('../../fonts/Vazir/Vazir-Black.woff');
+}
+
+@font-face {
+	font-family: FiraCode;
+	font-style: normal;
+	font-weight: 300;
+	src: url('../../fonts/FiraCode/FiraCode-Light.woff');
+}
+
+@font-face {
+	font-family: FiraCode;
+	font-style: normal;
+	font-weight: normal;
+	src: url('../../fonts/FiraCode/FiraCode-Regular.woff');
+}
+
+@font-face {
+	font-family: FiraCode;
+	font-style: normal;
+	font-weight: 500;
+	src: url('../../fonts/FiraCode/FiraCode-Medium.woff');
+}
+
+@font-face {
+	font-family: FiraCode;
+	font-style: normal;
+	font-weight: Bold;
+	src: url('../../fonts/FiraCode/FiraCode-Bold.woff');
+}
+
+body, input{
+    text-align: right;
+    font-family: Vazir, arial;
+    font-size: 1.6rem;
+}
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+	font-family: YekanBakh, arial;
+}
+
+/* .link,
+.link.code {
+	color: $teal;
+	&:hover {
+		color: $orange-darken-2;
+	}
+	&::selection {
+		color: $blue-grey-darken-2;
+	}
+}
+
+.no-link {
+	color: inherit;
+	&:hover {
+		color: $orange-darken-2;
+	}
+} */
+
+.link,
+.no-link {
+	text-decoration: none !important;
+	&:focus {
+		outline: none;
+	}
+}
+
+code,
+.code {
+	font-family: FiraCode, YekanBakh, arial;
+	font-size: 85%;
+	color: inherit;
+}
+
+code.no-resize,
+.code.no-resize {
+	font-size: 100%;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+}
