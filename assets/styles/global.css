@@ -2,5 +2,7 @@
 @import './vars/all.css';
 
 /* Partials */
+@import './base/common.css';
+@import './base/grid.css';
 @import './base/typography.css';
 @import './base/helpers.css';

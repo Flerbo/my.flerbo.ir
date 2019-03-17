@@ -2,14 +2,10 @@ html {
     font-size: 62.5%;
 }
 
-/* * {
+* {
     -webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	&::selection {
-		color: $orange-darken-2;
-		background: color($orange a(10%));
-	}
-} */
+}
 
 @font-face {
 	font-family: YekanBakh;
@@ -124,23 +120,22 @@ h6, .h6 {
 	font-family: YekanBakh, arial;
 }
 
-/* .link,
+.link,
 .link.code {
-	color: $teal;
+	color: $dark-grey;
+	transition: color .3s;
 	&:hover {
-		color: $orange-darken-2;
-	}
-	&::selection {
-		color: $blue-grey-darken-2;
+		color: $sazito;
 	}
 }
 
 .no-link {
 	color: inherit;
+	transition: color .3s;
 	&:hover {
-		color: $orange-darken-2;
+		color: $sazito;
 	}
-} */
+}
 
 .link,
 .no-link {

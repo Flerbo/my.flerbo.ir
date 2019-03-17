@@ -1,0 +1,31 @@
+* {
+    box-sizing: border-box
+}
+
+body {
+    margin: 0;
+}
+
+.container {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    @media screen and (min-width: $lg) {
+        max-width: 1200px;
+    }
+}
+
+.row {
+    display: flex;
+    flex: 0 1 auto;
+    flex-wrap: wrap;
+}
+
+.align-content-middle {
+    align-content: center;
+    align-items: center;
+}
+
+.all-auto {
+    flex-grow: 1;
+}
