@@ -8,6 +8,10 @@ export default {
   */
     head: {
         title: 'استیکر لپتاپ فلربو - لپتاپ چین',
+        htmlAttrs: {
+            lang: 'fa',
+            dir: 'rtl',
+        },
         meta: [
             { charset: 'utf-8' },
             { name: 'viewport', content: 'width=device-width, initial-scale=1' },
