@@ -1,0 +1,117 @@
+<template>
+    <div class="submenu-wrapper half-gutter">
+        <div v-show="loading"
+             class="row carousel full-width full-height">
+            <div v-for="skeleton in 9"
+                 class="all-auto skeleton_screen"
+                 :key="skeleton">
+                <div class="skeleton_screen-item"/>
+            </div>
+        </div>
+        <carousel v-show="!loading"
+                  class="carousel full-width half-gap"
+                  :pagination-enabled="false"
+                  :per-page="11">
+            <slide v-for="item in items"
+                   class="item half-padding"
+                   :key="item.name">
+                <div class="item-content row align-content-middle align-content-center full-height half-padding"
+                     @click="clicked(item)">
+                    <img :src="item.image_url" :alt="item.title">
+                </div>
+            </slide>
+        </carousel>
+    </div>
+</template>
+<script>
+import { Carousel, Slide } from 'vue-carousel';
+
+export default {
+    components: {
+        Carousel,
+        Slide,
+    },
+    props: {
+        items: {
+            type: Array,
+            default: () => ([]),
+        },
+        loading: {
+            type: Boolean,
+            default: true,
+        },
+    },
+    methods: {
+        clicked(item) {
+            this.$emit('click', item);
+        },
+    },
+};
+</script>
+<style lang="postcss" scoped>
+    @import '../../../assets/styles/vars/all.css';
+    .submenu-wrapper {
+        height: 100px;
+    }
+    .carousel {
+        background-color: $light-blue-grey;
+        border-radius: $round-radius;
+        overflow: hidden;
+        position: relative;
+        &:after,
+        &:before {
+            @util size(20px, 100%);
+            @util position(absolute, 0 null 0 null);
+            content: '';
+            z-index: 2;
+        }
+        &:after {
+            background-image: linear-gradient(90deg, $light-blue-grey 0%, transparent 100%);
+            left: 0;
+        }
+        &:before {
+            background-image: linear-gradient(-90deg, $light-blue-grey 0%, transparent 100%);
+            right: 0;
+        }
+    }
+    .item {
+        height: 85px;
+        &-content {
+            border-radius: $round-radius;
+            cursor: pointer;
+            transition: all $smooth-transition;
+            &:hover {
+                background-color: color(black a(10%));
+            }
+            img {
+                @util size(auto, 100%);
+                display: block;
+            }
+        }
+    }
+    .skeleton_screen {
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        animation-iteration-count: infinite;
+        animation-name: placeHolderShimmer;
+        animation-timing-function: linear;
+        background: $light-grey;
+        background-image: linear-gradient(to right, $light-grey 0%, $white 20%, $light-grey 40%, $light-grey 100%);
+        background-repeat: no-repeat;
+        background-size: 200% 100%;
+        position: relative;
+        &-item {
+            height: 85px;
+            border: 30px solid $light-blue-grey;
+        }
+    }
+
+    @keyframes placeHolderShimmer {
+        0% {
+            background-position: -100% 0;
+        }
+        100% {
+            background-position: 100% 0;
+        }
+    }
+</style>

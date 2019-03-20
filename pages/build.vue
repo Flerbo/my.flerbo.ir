@@ -1,32 +1,70 @@
 <template>
     <div class="container build">
-        <div class="column full-height">
-            <div class="preview-wrapper">
+        <div class="row full-height">
+            <div class="full-width preview-wrapper">
                 preivewer
             </div>
-            <div class="align-center" dir="ltr">
-                controller
-                <div class="row">
-                    1
-                </div>
-                <div class="row">
-                    {{ foo }}
-                </div>
-                <main-controller v-model="foo" />
+            <div class="full-width align-center align-end" dir="ltr">
+                <sub-controller v-if="mainItem === 'laptop'"
+                                v-model="laptops.selected"
+                                :items="laptops.available"
+                                :loading="loading.stickers"/>
+                <sub-controller v-if="mainItem === 'sticker'"
+                                v-model="stickers.selected"
+                                :items="stickers.available"
+                                :loading="loading.stickers"/>
+                <main-controller v-model="mainItem"/>
             </div>
         </div>
     </div>
 </template>
 <script>
 import MainController from '~/components/build/controllers/main';
+import SubController from '~/components/build/controllers/sub';
+import {
+    STICKERS,
+} from '~endpoints';
 
 export default {
     components: {
         MainController,
+        SubController,
     },
     data: () => ({
-        foo: '',
+        endpoints: {
+            STICKERS,
+        },
+        loading: {
+            laptops: false,
+            stickers: false,
+        },
+        mainItem: 'laptop',
+        stickers: {
+            available: [],
+            selected: [],
+        },
+        laptops: {
+            available: [],
+            selected: '',
+        },
     }),
+    watch: {
+        mainItem(value) {
+            if (value === 'sticker') {
+                this.loadStickers();
+            }
+        },
+    },
+    methods: {
+        loadStickers() {
+            this.loading.stickers = true;
+            this.stickers.available = [];
+            this.$axios.$get(this.endpoints.STICKERS).then(res => {
+                this.loading.stickers = false;
+                this.stickers.available = res;
+            });
+        },
+    },
 };
 </script>
 <style lang="postcss" scoped>

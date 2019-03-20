@@ -39,6 +39,10 @@ body {
     justify-content: center;
 }
 
+.align-end {
+    align-self: flex-end;
+}
+
 .all-auto {
     flex-grow: 1;
 }

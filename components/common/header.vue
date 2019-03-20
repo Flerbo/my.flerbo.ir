@@ -44,6 +44,7 @@
             margin: 30px auto 0;
             padding: 0 25px;
             height: 100px;
+            position: relative;
             img {
                 @util size(144px, auto);
                 display: block;
