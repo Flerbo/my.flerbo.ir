@@ -1,4 +1,15 @@
+@import '../vars/all.css';
+
 .box {
-    border-radius: 5px;
-    box-shadow: 0 10px 30px rgba(50,50,93,.12), 0 -1px 4px rgba(0,0,0,.06);
+    background-color: $white;
+    border-radius: $round-radius;
+    box-shadow: 0 10px 30px rgba(50,50,93,.12),
+                0 -1px 4px rgba(0,0,0,.06);
+}
+
+.box.active {
+    background-color: $sazito;
+    border-radius: $round-radius;
+    box-shadow: 0 3px 6px rgba(229,170,97,.15),
+                0 1px 3px rgba(0,0,0,.11);
 }

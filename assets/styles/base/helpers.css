@@ -80,10 +80,22 @@
     user-select: none;
 }
 
+.pointer {
+    cursor: pointer;
+}
+
 .hidden {
     display: none;
 }
 
 .align-left {
     text-align: left;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.align-right {
+    text-align: right;
 }

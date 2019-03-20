@@ -27,9 +27,10 @@
     @import '../../assets/styles/vars/all.css';
     header {
         background: $sazito;
+        display: inline-block;
         margin: 0 auto 30px;
         position: relative;
-        display: inline-block;
+        z-index: 9;
         .wave {
             @util position(absolute null 0 0 0);
             svg {
@@ -39,7 +40,6 @@
         }
         nav {
             background-color: $white;
-            position: relative;
             z-index: 10;
             margin: 30px auto 0;
             padding: 0 25px;

@@ -1,3 +1,5 @@
+@import '../vars/all.css';
+
 html {
     font-size: 62.5%;
 }
@@ -123,7 +125,7 @@ h6, .h6 {
 .link,
 .link.code {
 	color: $dark-grey;
-	transition: color .3s;
+	transition: color $smooth-transition;
 	&:hover {
 		color: $sazito;
 	}
@@ -131,7 +133,7 @@ h6, .h6 {
 
 .no-link {
 	color: inherit;
-	transition: color .3s;
+	transition: color $smooth-transition;
 	&:hover {
 		color: $sazito;
 	}

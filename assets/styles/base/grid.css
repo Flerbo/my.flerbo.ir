@@ -15,15 +15,28 @@ body {
     }
 }
 
-.row {
+.row,
+.column {
     display: flex;
     flex: 0 1 auto;
     flex-wrap: wrap;
 }
 
+.row {
+    flex-direction: row;
+}
+
+.column {
+    flex-direction: column;
+}
+
 .align-content-middle {
     align-content: center;
     align-items: center;
+}
+
+.align-content-center {
+    justify-content: center;
 }
 
 .all-auto {
