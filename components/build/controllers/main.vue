@@ -2,16 +2,14 @@
     <div class="row align-content-center">
         <div v-for="item in items"
              class="half-padding"
-             :key="item"
-        >
-            <label :class="['type_select-item box padding pointer', {active: picked === item}]">
+             :key="item.name">
+            <label :class="['type_select-item box padding pointer', {active: picked === item.name}, {disabled: item.disabled}]">
                 <svg-icon class="icon"
-                          :name="item"
-                />
+                          :name="item.name"/>
                 <input v-model="picked"
                        type="radio"
-                       :value="item"
-                >
+                       :disabled="item.disabled"
+                       :value="item.name">
             </label>
         </div>
     </div>
@@ -21,8 +19,13 @@ export default {
     data: () => ({
         picked: '',
         items: [
-            'laptop',
-            'sticker',
+            {
+                name: 'laptop',
+                disabled: true,
+            },
+            {
+                name: 'sticker',
+            },
         ],
     }),
     watch: {
@@ -46,7 +49,7 @@ export default {
                 display: block;
                 transition: fill $smooth-transition;
             }
-            &:not(.active) {
+            &:not(.active):not(.disabled) {
                 .icon {
                     fill: $dark-grey;
                 }
@@ -59,6 +62,12 @@ export default {
             &.active {
                 .icon {
                     fill: $white;
+                }
+            }
+            &.disabled {
+                cursor: no-drop;
+                .icon {
+                    fill: $light-grey;
                 }
             }
         }
