@@ -1,8 +1,18 @@
 <template>
     <div class="container build">
-        <div class="row full-height">
-            <div class="full-width preview-wrapper">
-                preivewer
+        <div class="column full-height">
+            <div class="full-width all-auto">
+                <div class="row full-height align-content-middle align-center">
+                    <div class="all-auto">
+                        <div class="laptop-wrapper">
+                            <img class="laptop" src="~assets/laptop.png" width="500px" alt="">
+                            <div class="sticker-wrapper">
+                                <canvas id="canvas"></canvas>
+                            </div>
+                            <!-- <h3 dir="ltr" lang="en">Lenovo Thinkpad L570 - 15.6"</h3> -->
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="full-width align-center align-end" dir="ltr">
                 <sub-controller v-if="mainItem === 'laptop'"
@@ -50,9 +60,11 @@ export default {
     }),
     watch: {
         mainItem(value) {
-            if (value === 'sticker') {
+            if (value === 'sticker' && this.stickers.available.length === 0) {
                 this.loadStickers();
-            }
+            } else if (value === 'laptop' && this.laptops.available.length === 0) {
+                this.loadLaptops();
+            };
         },
     },
     methods: {
@@ -64,14 +76,33 @@ export default {
                 this.stickers.available = res;
             });
         },
+        loadLaptops() {
+            console.log('loading laptops...');
+        },
     },
 };
 </script>
 <style lang="postcss" scoped>
     @import '../assets/styles/vars/all.css';
     .build {
-        @util position(fixed, null 0 0 0);
-        min-height: 100vh;
+        height: 100vh;
+        margin-top: -160px;
         padding-top: 160px;
+        padding-bottom: 10px;
+    }
+
+    .laptop-wrapper {
+        display: inline-block;
+        position: relative;
+        .laptop {
+            height: auto;
+            display: block;
+        }
+        * {
+            user-select: none;
+        }
+        .sticker-wrapper{
+            @util position(absolute, 0 0 0 0);
+        }
     }
 </style>
