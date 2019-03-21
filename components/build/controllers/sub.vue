@@ -3,11 +3,13 @@
         <div v-show="loading"
              class="row carousel full-width full-height"
         >
-            <div v-for="skeleton in 9"
-                 class="all-auto skeleton_screen"
-                 :key="skeleton"
+            <div v-for="spinner in 9"
+                 class="all-auto"
+                 :key="spinner"
             >
-                <div class="skeleton_screen-item" />
+                <div class="spinner"
+                     :style="`animation-delay: ${spinner * 600}ms`"
+                />
             </div>
         </div>
         <carousel v-show="!loading"
@@ -94,29 +96,22 @@ export default {
             }
         }
     }
-    .skeleton_screen {
-        animation-duration: 1s;
-        animation-fill-mode: forwards;
-        animation-iteration-count: infinite;
-        animation-name: placeHolderShimmer;
-        animation-timing-function: linear;
-        background: $light-grey;
-        background-image: linear-gradient(to right, $light-grey 0%, $white 20%, $light-grey 40%, $light-grey 100%);
-        background-repeat: no-repeat;
-        background-size: 200% 100%;
-        position: relative;
-        &-item {
-            height: 85px;
-            border: 30px solid $light-blue-grey;
-        }
+
+    .spinner {
+        @util size(40px);
+        transform: scale(0);
+        background-color: $sazito;
+        border-radius: 100%;
+        margin: 23px auto;
+        animation: sk-scaleout 1.0s infinite ease-in-out;
     }
 
-    @keyframes placeHolderShimmer {
+    @keyframes sk-scaleout {
         0% {
-            background-position: -100% 0;
-        }
-        100% {
-            background-position: 100% 0;
+            transform: scale(0);
+        } 100% {
+            transform: scale(1.0);
+            opacity: 0;
         }
     }
 </style>

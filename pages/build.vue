@@ -8,7 +8,8 @@
                             <img class="laptop"
                                  src="~assets/laptop.png"
                                  alt=""
-                                 :width="this.laptops.selected.width * inchToPixelConstant">
+                                 :width="this.laptops.selected.width * inchToPixelConstant"
+                            >
                             <div class="sticker-wrapper">
                                 <canvas id="canvas" />
                             </div>

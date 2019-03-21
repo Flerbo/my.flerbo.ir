@@ -2,14 +2,17 @@
     <div class="row align-content-center">
         <div v-for="item in items"
              class="half-padding"
-             :key="item.name">
+             :key="item.name"
+        >
             <label :class="['type_select-item box padding pointer', {active: picked === item.name}, {disabled: item.disabled}]">
                 <svg-icon class="icon"
-                          :name="item.name"/>
+                          :name="item.name"
+                />
                 <input v-model="picked"
                        type="radio"
                        :disabled="item.disabled"
-                       :value="item.name">
+                       :value="item.name"
+                >
             </label>
         </div>
     </div>
