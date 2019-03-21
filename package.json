@@ -16,6 +16,7 @@
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/svg-sprite": "^0.2.0",
     "cross-env": "^5.2.0",
+    "fabric": "^2.7.0",
     "nuxt": "^2.4.0",
     "vue-carousel": "^0.18.0-alpha"
   },

@@ -1,22 +1,27 @@
 <template>
     <div class="submenu-wrapper half-gutter">
         <div v-show="loading"
-             class="row carousel full-width full-height">
+             class="row carousel full-width full-height"
+        >
             <div v-for="skeleton in 9"
                  class="all-auto skeleton_screen"
-                 :key="skeleton">
-                <div class="skeleton_screen-item"/>
+                 :key="skeleton"
+            >
+                <div class="skeleton_screen-item" />
             </div>
         </div>
         <carousel v-show="!loading"
                   class="carousel full-width half-gap"
                   :pagination-enabled="false"
-                  :per-page="11">
+                  :per-page="11"
+        >
             <slide v-for="item in items"
                    class="item half-padding"
-                   :key="item.name">
+                   :key="item.name"
+            >
                 <div class="item-content row align-content-middle align-content-center full-height half-padding"
-                     @click="clicked(item)">
+                     @click="clicked(item)"
+                >
                     <img :src="item.image_url" :alt="item.title">
                 </div>
             </slide>
