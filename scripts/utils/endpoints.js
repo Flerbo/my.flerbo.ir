@@ -1,1 +1,8 @@
-export const STICKERS = '/e95a5dcb-e83a-4031-bf4f-4a5d8e1b9f7e';
+export const STICKERS = (type = 'programming') => {
+    switch (type) {
+    case 'programming':
+        return '/2d44811d-34a4-4a60-96ff-96fb45bf2c8c';
+    default:
+        return '';
+    }
+};

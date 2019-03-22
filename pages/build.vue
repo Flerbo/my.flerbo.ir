@@ -72,7 +72,7 @@ export default {
     watch: {
         mainItem(value) {
             if (value === 'sticker' && this.stickers.available.length === 0) {
-                this.loadStickers();
+                this.loadStickers('programming');
             } else if (value === 'laptop' && this.laptops.available.length === 0) {
                 this.loadLaptops();
             };
@@ -126,10 +126,10 @@ export default {
                 this.canvas.add(img);
             });
         },
-        loadStickers() {
+        loadStickers(category) {
             this.loading.stickers = true;
             this.stickers.available = [];
-            this.$axios.$get(this.endpoints.STICKERS).then(res => {
+            this.$axios.$get(this.endpoints.STICKERS(category)).then(res => {
                 this.loading.stickers = false;
                 this.stickers.available = res;
             });

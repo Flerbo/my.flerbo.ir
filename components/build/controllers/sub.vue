@@ -19,7 +19,7 @@
         >
             <slide v-for="item in items"
                    class="item half-padding"
-                   :key="item.name"
+                   :key="item.id"
             >
                 <div class="item-content row align-content-middle align-content-center full-height half-padding"
                      @click="clicked(item)"
