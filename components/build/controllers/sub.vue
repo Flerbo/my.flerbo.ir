@@ -13,8 +13,11 @@
             </div>
         </div>
         <carousel v-show="!loading"
-                  class="carousel full-width half-gap"
+                  class="carousel full-width"
                   :pagination-enabled="false"
+                  :navigation-enabled="true"
+                  :navigation-next-label="'➜'"
+                  :navigation-prev-label="'➜'"
                   :per-page="11"
         >
             <slide v-for="item in items"
@@ -63,7 +66,6 @@ export default {
     .carousel {
         background-color: $light-blue-grey;
         border-radius: $round-radius;
-        overflow: hidden;
         position: relative;
         &:after,
         &:before {
@@ -112,6 +114,29 @@ export default {
         } 100% {
             transform: scale(1.0);
             opacity: 0;
+        }
+    }
+</style>
+<style lang="postcss">
+    @import '../../../assets/styles/vars/all.css';
+    .VueCarousel-navigation {
+        &-button {
+            color: $dark-grey !important;
+            transition: all $smooth-transition;
+            font-size: 32px;
+            line-height: 1;
+            outline: none !important;
+            user-select: none;
+            &:hover {
+                color: $sazito !important;
+            }
+        }
+        &-prev {
+            transform: translateY(-50%) translateX(-100%) scale(-1) !important;
+        }
+        &--disabled {
+            cursor: auto;
+            opacity: 0 !important;
         }
     }
 </style>
