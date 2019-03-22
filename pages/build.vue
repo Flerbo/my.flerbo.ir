@@ -1,8 +1,8 @@
 <template>
     <div class="container build">
-        <div class="column full-height">
+        <div class="row full-height">
             <div class="full-width all-auto">
-                <div class="row full-height align-content-middle align-center">
+                <div class="row relative full-height align-content-middle align-center">
                     <div class="all-auto">
                         <div class="laptop-wrapper">
                             <img class="laptop"
@@ -16,6 +16,7 @@
                             <!-- <h3 dir="ltr" lang="en">Lenovo Thinkpad L570 - 15.6"</h3> -->
                         </div>
                     </div>
+                    <reset @click="reset"/>
                 </div>
             </div>
             <div class="full-width align-center align-end" dir="ltr">
@@ -36,6 +37,7 @@
 <script>
 import MainController from '~/components/build/controllers/main';
 import SubController from '~/components/build/controllers/sub';
+import Reset from '~/components/build/controllers/reset';
 import {
     STICKERS,
 } from '~endpoints';
@@ -45,6 +47,7 @@ export default {
     components: {
         MainController,
         SubController,
+        Reset,
     },
     data: () => ({
         endpoints: {
@@ -126,6 +129,9 @@ export default {
                 this.canvas.add(img);
             });
         },
+        reset() {
+            this.canvas.clear();
+        },
         loadStickers(category) {
             this.loading.stickers = true;
             this.stickers.available = [];
@@ -143,7 +149,7 @@ export default {
 <style lang="postcss" scoped>
     @import '../assets/styles/vars/all.css';
     .build {
-        min-height: 100vh;
+        height: 100vh;
         margin-top: -160px;
         padding-top: 160px;
         padding-bottom: 10px;

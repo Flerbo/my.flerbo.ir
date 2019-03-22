@@ -1,13 +1,13 @@
 .padding {
-    padding: 1.5rem;
+    padding: 10px;
 }
 
 .double-padding {
-    padding: 3rem;
+    padding: 20px;
 }
 
 .half-padding {
-    padding: 0.75rem;
+    padding: 5px;
 }
 
 .no-padding {
@@ -15,27 +15,27 @@
 }
 
 .gutter {
-    @util padding(1.5rem null);
+    @util padding(10px null);
 }
 
 .double-gutter {
-    @util padding(3rem null);
+    @util padding(20px null);
 }
 
 .half-gutter {
-    @util padding(0.75rem null);
+    @util padding(5px null);
 }
 
 .gap {
-    @util padding(null 1.5rem);
+    @util padding(null 10px);
 }
 
 .double-gap {
-    @util padding(null 3rem);
+    @util padding(null 20px);
 }
 
 .half-gap {
-    @util padding(null 0.75rem);
+    @util padding(null 5px);
 }
 
 .no-gap {
@@ -55,7 +55,7 @@
 }
 
 .negative-margin {
-    @util margin(null -1.5rem);
+    @util margin(null -10px);
 }
 
 .no-list {
@@ -98,4 +98,8 @@
 
 .align-right {
     text-align: right;
+}
+
+.relative {
+    position: relative;
 }
