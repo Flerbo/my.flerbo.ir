@@ -27,7 +27,10 @@
                 <div class="item-content row align-content-middle align-content-center full-height half-padding"
                      @click="clicked(item)"
                 >
-                    <img :src="item.image_url" :alt="item.title">
+                    <img class="code"
+                         :src="item.image_url"
+                         :alt="item.title"
+                         :title="item.title">
                 </div>
             </slide>
         </carousel>
@@ -84,6 +87,7 @@ export default {
         }
     }
     .item {
+        font-size: 12px;
         height: 85px;
         &-content {
             border-radius: $round-radius;
