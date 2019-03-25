@@ -24,7 +24,6 @@ export default {
         items: [
             {
                 name: 'laptop',
-                disabled: true,
             },
             {
                 name: 'sticker',

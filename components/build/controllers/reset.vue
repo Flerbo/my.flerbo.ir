@@ -1,9 +1,9 @@
 <template>
-    <div class="reset row align-content-middle"
+    <div class="reset row align-content-middle half-gutter gap"
          @click="reset"
     >
+        <span>از اول</span>
         <svg-icon name="undo" />
-        <span class="gap">ریست</span>
     </div>
 </template>
 <script>
@@ -19,6 +19,8 @@ export default {
     @import '../../../assets/styles/vars/all.css';
     .reset {
         @util position(absolute, 0 null null 0);
+        background-color: $white;
+        border-radius: $round-radius;
         color: $grey;
         cursor: pointer;
         user-select: none;
@@ -27,6 +29,7 @@ export default {
             @util size(20px);
             fill: $grey;
             transition: fill $smooth-transition;
+            margin-right: 10px;
         }
         &:hover {
             color: $sazito;
