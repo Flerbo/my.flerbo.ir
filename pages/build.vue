@@ -9,6 +9,14 @@
                               :src="laptops.selected.image_url"
                               @load="updateInchToPixelConstant"
                 />
+                <template v-else>
+                    <div class="placeholder-wrapper row full-height align-content-middle align-center">
+                        <div class="all-auto">
+                            <svg-icon name="laptop"/>
+                            <span>برای چیدن استیکر روی لپتاپ، ابتدا یک لپتاپ انتخاب کنید.</span>
+                        </div>
+                    </div>
+                </template>
                 <div v-show="laptops.selected"
                      class="sticker-wrapper gap">
                     <canvas id="canvas" />
@@ -185,6 +193,22 @@ export default {
     }
     .controller-wrapper {
         @util position(absolute, null 0 0 0);
+    }
+    .placeholder-wrapper {
+        color: $light-1-grey;
+        svg {
+            display: inline-block;
+            fill: $light-1-grey;
+            @media (min-width: $sm) {
+                @util size(auto, 100%);
+            }
+            @media (max-width: $sm) {
+                @util size(100%, auto);
+            }
+        }
+        span {
+            display: block;
+        }
     }
     .laptop-wrapper {
         display: inline-block;
