@@ -13,12 +13,13 @@
             </div>
         </div>
         <carousel v-show="!loading"
-                  class="carousel full-width"
+                  class="carousel full-width full-height"
                   :pagination-enabled="false"
                   :navigation-enabled="true"
                   :navigation-next-label="'➜'"
                   :navigation-prev-label="'➜'"
                   :per-page="11"
+                  :center-mode="true"
         >
             <slide v-for="item in items"
                    class="item half-padding"
@@ -124,24 +125,29 @@ export default {
 </style>
 <style lang="postcss">
     @import '../../../assets/styles/vars/all.css';
-    .VueCarousel-navigation {
-        &-button {
-            color: $dark-grey !important;
-            transition: all $smooth-transition;
-            font-size: 32px;
-            line-height: 1;
-            outline: none !important;
-            user-select: none;
-            &:hover {
-                color: $sazito !important;
+    .VueCarousel {
+        &-wrapper {
+            padding: 3px 0;
+        }
+        &-navigation {
+            &-button {
+                color: $dark-grey !important;
+                transition: all $smooth-transition;
+                font-size: 32px;
+                line-height: 1;
+                outline: none !important;
+                user-select: none;
+                &:hover {
+                    color: $sazito !important;
+                }
             }
-        }
-        &-prev {
-            transform: translateY(-50%) translateX(-100%) scale(-1) !important;
-        }
-        &--disabled {
-            cursor: auto;
-            opacity: 0 !important;
+            &-prev {
+                transform: translateY(-50%) translateX(-100%) scale(-1) !important;
+            }
+            &--disabled {
+                cursor: auto;
+                opacity: 0 !important;
+            }
         }
     }
 </style>
