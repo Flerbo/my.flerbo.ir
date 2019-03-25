@@ -30,7 +30,8 @@
                     <img class="code"
                          :src="item.image_url"
                          :alt="item.title"
-                         :title="item.title">
+                         :title="item.title"
+                    >
                 </div>
             </slide>
         </carousel>

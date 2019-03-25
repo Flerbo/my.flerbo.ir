@@ -1,7 +1,8 @@
 <template>
     <div class="reset row align-content-middle"
-         @click="reset">
-        <svg-icon name="undo"/>
+         @click="reset"
+    >
+        <svg-icon name="undo" />
         <span class="gap">ریست</span>
     </div>
 </template>

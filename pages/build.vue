@@ -1,25 +1,20 @@
 <template>
     <div class="container build">
-        <div class="row full-height">
-            <div class="full-width all-auto">
-                <div class="row relative full-height align-content-middle align-center">
-                    <div class="all-auto">
-                        <div class="laptop-wrapper">
-                            <img class="laptop"
-                                 src="~assets/laptop.png"
-                                 alt=""
-                                 :width="this.laptops.selected.width * inchToPixelConstant"
-                            >
-                            <div class="sticker-wrapper">
-                                <canvas id="canvas" />
-                            </div>
-                            <!-- <h3 dir="ltr" lang="en">Lenovo Thinkpad L570 - 15.6"</h3> -->
-                        </div>
-                    </div>
-                    <reset @click="reset"/>
+        <div class="relative full-height align-center">
+            <div class="laptop-wrapper gap full-height">
+                <v-lazy-image class="laptop"
+                              ref="laptop"
+                              alt=""
+                              :src="laptops.selected.image_url"
+                              @load="updateInchToPixelConstant"
+                />
+                <div class="sticker-wrapper gap">
+                    <canvas id="canvas" />
                 </div>
+                <!-- <h3 dir="ltr" lang="en">Lenovo Thinkpad L570 - 15.6"</h3> -->
             </div>
-            <div class="full-width align-center align-end" dir="ltr">
+            <reset @click="reset" />
+            <div class="full-width controller-wrapper" dir="ltr">
                 <sub-controller v-if="mainItem === 'laptop'"
                                 :items="laptops.available"
                                 :loading="loading.stickers"
@@ -62,14 +57,15 @@ export default {
             available: [],
             selected: [],
         },
-        inchToPixelConstant: 33.8,
         laptops: {
             available: [],
             selected: {
                 width: 14.8,
                 height: 10,
+                image_url: 'http://my.flerbo.ikacc.ir/laptops/lenovo-thinkpad_l570.png',
             },
         },
+        inchToPixelConstant: 0,
         canvas: null,
     }),
     watch: {
@@ -80,12 +76,22 @@ export default {
                 this.loadLaptops();
             };
         },
+        inchToPixelConstant(value, oldValue) {
+            if (this.canvas) {
+                this.canvas.setHeight(this.laptops.selected.height * value);
+                this.canvas.setWidth(this.laptops.selected.width * value);
+                this.canvas.getObjects().forEach(img => {
+                    this.canvas.remove(img);
+                });
+            }
+        },
     },
     mounted() {
+        window.addEventListener('resize', this.updateInchToPixelConstant);
+        this.updateInchToPixelConstant();
         this.canvas = new fabric.Canvas('canvas', {
             width: this.laptops.selected.width * this.inchToPixelConstant,
             height: this.laptops.selected.height * this.inchToPixelConstant,
-
         });
         fabric.Group.prototype._controlsVisibility = {
             tl: false,
@@ -100,6 +106,11 @@ export default {
         };
     },
     methods: {
+        updateInchToPixelConstant() {
+            if (this.$refs.laptop) {
+                this.inchToPixelConstant = this.$refs.laptop.$el.width / this.laptops.selected.width;
+            }
+        },
         addSticker(sticker) {
             fabric.Image.fromURL(sticker.image_url, img => {
                 // Sticker Preview Width = Sticker Actual Width * (Laptop Preview Width / Laptop Actual Width)
@@ -152,21 +163,32 @@ export default {
         height: 100vh;
         margin-top: -160px;
         padding-top: 160px;
-        padding-bottom: 10px;
+        padding-bottom: 20px;
     }
-
+    .controller-wrapper {
+        @util position(absolute, null 0 0 0);
+    }
     .laptop-wrapper {
         display: inline-block;
         position: relative;
+        padding-top: 20px;
+        padding-bottom: 190px;
         .laptop {
-            height: auto;
-            display: block;
+            display: inline-block;
+            @media (min-width: $sm) {
+                @util size(auto, 100%);
+            }
+            @media (max-width: $sm) {
+                @util size(100%, auto);
+            }
         }
         * {
             user-select: none;
         }
-        .sticker-wrapper{
-            @util position(absolute, 0 0 0 0);
-        }
+    }
+    .sticker-wrapper{
+        @util position(absolute, 0 0 0 0);
+        padding-top: 20px;
+        padding-bottom: 190px;
     }
 </style>
