@@ -2,22 +2,26 @@
     <div class="container build">
         <div class="relative full-height align-center">
             <div class="laptop-wrapper gap full-height">
-                <v-lazy-image class="laptop"
+                <v-lazy-image v-if="laptops.selected"
+                              class="laptop"
                               ref="laptop"
-                              alt=""
+                              :alt="laptops.selected.title"
                               :src="laptops.selected.image_url"
                               @load="updateInchToPixelConstant"
                 />
-                <div class="sticker-wrapper gap">
+                <div v-show="laptops.selected"
+                     class="sticker-wrapper gap">
                     <canvas id="canvas" />
                 </div>
                 <!-- <h3 dir="ltr" lang="en">Lenovo Thinkpad L570 - 15.6"</h3> -->
             </div>
             <reset @click="reset" />
+            <order/>
             <div class="full-width controller-wrapper" dir="ltr">
                 <sub-controller v-if="mainItem === 'laptop'"
+                                @click="addLaptop"
                                 :items="laptops.available"
-                                :loading="loading.stickers"
+                                :loading="loading.laptops"
                 />
                 <sub-controller v-if="mainItem === 'sticker'"
                                 @click="addSticker"
@@ -33,8 +37,10 @@
 import MainController from '~/components/build/controllers/main';
 import SubController from '~/components/build/controllers/sub';
 import Reset from '~/components/build/controllers/reset';
+import Order from '~/components/build/controllers/order';
 import {
     STICKERS,
+    LAPTOPS,
 } from '~endpoints';
 import { fabric } from 'fabric';
 
@@ -43,27 +49,25 @@ export default {
         MainController,
         SubController,
         Reset,
+        Order,
     },
     data: () => ({
         endpoints: {
             STICKERS,
+            LAPTOPS,
         },
         loading: {
             laptops: false,
             stickers: false,
         },
-        mainItem: 'laptop',
+        mainItem: '',
         stickers: {
             available: [],
             selected: [],
         },
         laptops: {
             available: [],
-            selected: {
-                width: 14.8,
-                height: 10,
-                image_url: 'http://my.flerbo.ikacc.ir/laptops/lenovo-thinkpad_l570.png',
-            },
+            selected: null,
         },
         inchToPixelConstant: 0,
         canvas: null,
@@ -77,37 +81,35 @@ export default {
             };
         },
         inchToPixelConstant(value, oldValue) {
-            if (this.canvas) {
-                this.canvas.setHeight(this.laptops.selected.height * value);
-                this.canvas.setWidth(this.laptops.selected.width * value);
-                this.canvas.getObjects().forEach(img => {
-                    this.canvas.remove(img);
-                });
-            }
+            this.canvas.setHeight(this.laptops.selected.height * value);
+            this.canvas.setWidth(this.laptops.selected.width * value);
         },
     },
     mounted() {
         window.addEventListener('resize', this.updateInchToPixelConstant);
-        this.updateInchToPixelConstant();
-        this.canvas = new fabric.Canvas('canvas', {
-            width: this.laptops.selected.width * this.inchToPixelConstant,
-            height: this.laptops.selected.height * this.inchToPixelConstant,
+        window.addEventListener('keydown', event => {
+            if (event.key === 'Delete') {
+                this.removeStickers();
+            }
         });
-        fabric.Group.prototype._controlsVisibility = {
-            tl: false,
-            tr: false,
-            br: false,
-            bl: false,
-            ml: false,
-            mt: false,
-            mr: false,
-            mb: false,
-            mtr: true,
-        };
     },
     methods: {
+        initCanvas() {
+            this.canvas = new fabric.Canvas('canvas');
+            fabric.Group.prototype._controlsVisibility = {
+                tl: false,
+                tr: false,
+                br: false,
+                bl: false,
+                ml: false,
+                mt: false,
+                mr: false,
+                mb: false,
+                mtr: true,
+            };
+        },
         updateInchToPixelConstant() {
-            if (this.$refs.laptop) {
+            if (this.$refs.laptop && this.laptops.selected) {
                 this.inchToPixelConstant = this.$refs.laptop.$el.width / this.laptops.selected.width;
             }
         },
@@ -140,6 +142,17 @@ export default {
                 this.canvas.add(img);
             });
         },
+        removeStickers() {
+            this.canvas.remove(this.canvas.getActiveObject());
+            this.canvas.getActiveObjects().forEach(sticker => {
+                this.canvas.remove(sticker);
+            });
+            this.canvas.discardActiveGroup();
+        },
+        addLaptop(laptop) {
+            this.laptops.selected = laptop;
+            this.initCanvas();
+        },
         reset() {
             this.canvas.clear();
         },
@@ -152,7 +165,12 @@ export default {
             });
         },
         loadLaptops() {
-            console.log('loading laptops...');
+            this.loading.laptops = true;
+            this.laptops.available = [];
+            this.$axios.$get(this.endpoints.LAPTOPS).then(res => {
+                this.loading.laptops = false;
+                this.laptops.available = res;
+            });
         },
     },
 };

@@ -6,3 +6,5 @@ export const STICKERS = (type = 'programming') => {
         return '';
     }
 };
+
+export const LAPTOPS = '/f37b6a67-5f79-4cc6-b6b3-defa0a254862';
