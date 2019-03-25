@@ -1,0 +1,8 @@
+.v-lazy-image {
+    filter: blur(5px);
+    transition: filter 1.6s;
+    will-change: filter;
+    &-loaded {
+        filter: blur(0);
+    }
+}

@@ -6,3 +6,4 @@
 @import './base/grid.css';
 @import './base/typography.css';
 @import './base/helpers.css';
+@import './base/lazyLoad.css';
