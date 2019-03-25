@@ -4,12 +4,10 @@
              class="row carousel full-width full-height"
         >
             <div v-for="spinner in 9"
-                 class="all-auto"
+                 class="all-auto relative"
                  :key="spinner"
             >
-                <div class="spinner"
-                     :style="`animation-delay: ${spinner * 600}ms`"
-                />
+                <div class="spinner" />
             </div>
         </div>
         <carousel v-show="!loading"
@@ -22,10 +20,11 @@
                   :center-mode="true"
         >
             <slide v-for="item in items"
-                   class="item half-padding"
+                   class="item half-padding relative"
                    :key="item.id"
             >
-                <div class="item-content row align-content-middle align-content-center full-height half-padding"
+                <div class="spinner" />
+                <div class="item-content row align-content-middle align-content-center full-height half-padding relative"
                      @click="clicked(item)"
                 >
                     <img class="code"
@@ -95,8 +94,9 @@ export default {
             border-radius: $round-radius;
             cursor: pointer;
             transition: all $smooth-transition;
+            background-color: $light-blue-grey;
             &:hover {
-                background-color: color(black a(10%));
+                background-color: $light-2-grey;
             }
             img {
                 @util size(auto, 100%);
@@ -107,6 +107,7 @@ export default {
 
     .spinner {
         @util size(40px);
+        @util position(absolute, 0 0 0 0);
         transform: scale(0);
         background-color: $sazito;
         border-radius: 100%;

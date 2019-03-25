@@ -69,7 +69,7 @@ export default {
             &.disabled {
                 cursor: no-drop;
                 .icon {
-                    fill: $light-grey;
+                    fill: $light-3-grey;
                 }
             }
         }
