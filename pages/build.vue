@@ -122,6 +122,7 @@ export default {
             }
         },
         addSticker(sticker) {
+            this.stickers.selected.push(sticker);
             fabric.Image.fromURL(sticker.image_url, img => {
                 // Sticker Preview Width = Sticker Actual Width * (Laptop Preview Width / Laptop Actual Width)
                 if (sticker.width) {
@@ -163,6 +164,7 @@ export default {
         },
         reset() {
             this.canvas.clear();
+            this.stickers.selected = [];
         },
         loadStickers(category) {
             this.loading.stickers = true;
