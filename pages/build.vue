@@ -12,29 +12,36 @@
                 <template v-else>
                     <div class="placeholder-wrapper row full-height align-content-middle align-center">
                         <div class="all-auto">
-                            <svg-icon name="laptop"/>
+                            <svg-icon name="laptop" />
                             <span>برای چیدن استیکر روی لپتاپ، ابتدا یک لپتاپ انتخاب کنید.</span>
                         </div>
                     </div>
                 </template>
                 <div v-show="laptops.selected"
-                     class="sticker-wrapper gap">
+                     class="sticker-wrapper gap"
+                >
                     <canvas id="canvas" />
                 </div>
                 <!-- <h3 dir="ltr" lang="en">Lenovo Thinkpad L570 - 15.6"</h3> -->
             </div>
             <reset @click="reset" />
-            <order/>
+            <order />
             <div class="full-width controller-wrapper" dir="ltr">
                 <sub-controller v-if="mainItem === 'laptop'"
                                 @click="addLaptop"
                                 :items="laptops.available"
                                 :loading="loading.laptops"
                 />
+                <sub-controller v-if="mainItem === 'category'"
+                                @click="openCategory"
+                                :items="categries.available"
+                                :loading="loading.categries"
+                />
                 <sub-controller v-if="mainItem === 'sticker'"
                                 @click="addSticker"
                                 :items="stickers.available"
                                 :loading="loading.stickers"
+                                :can-return="true"
                 />
                 <main-controller v-model="mainItem" />
             </div>
@@ -47,7 +54,7 @@ import SubController from '~/components/build/controllers/sub';
 import Reset from '~/components/build/controllers/reset';
 import Order from '~/components/build/controllers/order';
 import {
-    STICKERS,
+    CATEGORIES,
     LAPTOPS,
 } from '~endpoints';
 import { fabric } from 'fabric';
@@ -61,12 +68,13 @@ export default {
     },
     data: () => ({
         endpoints: {
-            STICKERS,
+            CATEGORIES,
             LAPTOPS,
         },
         loading: {
             laptops: false,
             stickers: false,
+            categries: false,
         },
         mainItem: '',
         stickers: {
@@ -77,13 +85,17 @@ export default {
             available: [],
             selected: null,
         },
+        categries: {
+            available: [],
+            selected: null,
+        },
         inchToPixelConstant: 0,
         canvas: null,
     }),
     watch: {
         mainItem(value) {
-            if (value === 'sticker' && this.stickers.available.length === 0) {
-                this.loadStickers('programming');
+            if (value === 'category' && this.stickers.available.length === 0) {
+                this.loadCategories();
             } else if (value === 'laptop' && this.laptops.available.length === 0) {
                 this.loadLaptops();
             };
@@ -122,34 +134,38 @@ export default {
             }
         },
         addSticker(sticker) {
-            this.stickers.selected.push(sticker);
-            fabric.Image.fromURL(sticker.image_url, img => {
-                // Sticker Preview Width = Sticker Actual Width * (Laptop Preview Width / Laptop Actual Width)
-                if (sticker.width) {
-                    img.scaleToWidth(sticker.width * this.inchToPixelConstant, true);
-                } else {
-                    img.scaleToHeight(sticker.height * this.inchToPixelConstant, true);
-                }
-                img.setControlsVisibility({
-                    mt: false,
-                    mb: false,
-                    ml: false,
-                    mr: false,
-                    bl: false,
-                    br: false,
-                    tl: false,
-                    tr: false,
-                    mtr: true,
+            if (sticker) {
+                this.stickers.selected.push(sticker);
+                fabric.Image.fromURL(sticker.image_url, img => {
+                    // Sticker Preview Width = Sticker Actual Width * (Laptop Preview Width / Laptop Actual Width)
+                    if (sticker.width) {
+                        img.scaleToWidth(sticker.width * this.inchToPixelConstant, true);
+                    } else {
+                        img.scaleToHeight(sticker.height * this.inchToPixelConstant, true);
+                    }
+                    img.setControlsVisibility({
+                        mt: false,
+                        mb: false,
+                        ml: false,
+                        mr: false,
+                        bl: false,
+                        br: false,
+                        tl: false,
+                        tr: false,
+                        mtr: true,
+                    });
+                    img.setShadow({
+                        color: '#00000030',
+                        blur: 1,
+                        offsetX: 1,
+                        offsetY: 1,
+                    });
+                    this.canvas.centerObject(img);
+                    this.canvas.add(img);
                 });
-                img.setShadow({
-                    color: '#00000030',
-                    blur: 1,
-                    offsetX: 1,
-                    offsetY: 1,
-                });
-                this.canvas.centerObject(img);
-                this.canvas.add(img);
-            });
+            } else {
+                this.mainItem = 'category';
+            }
         },
         removeStickers() {
             this.canvas.remove(this.canvas.getActiveObject());
@@ -169,7 +185,7 @@ export default {
         loadStickers(category) {
             this.loading.stickers = true;
             this.stickers.available = [];
-            this.$axios.$get(this.endpoints.STICKERS(category)).then(res => {
+            this.$axios.$get(category).then(res => {
                 this.loading.stickers = false;
                 this.stickers.available = res;
             });
@@ -181,6 +197,19 @@ export default {
                 this.loading.laptops = false;
                 this.laptops.available = res;
             });
+        },
+        loadCategories(category) {
+            this.loading.categries = true;
+            this.categries.available = [];
+            this.$axios.$get(this.endpoints.CATEGORIES).then(res => {
+                this.loading.categries = false;
+                this.categries.available = res;
+            });
+        },
+        openCategory(category) {
+            this.mainItem = 'sticker';
+            this.categries.selected = category;
+            this.loadStickers(category.id);
         },
     },
 };

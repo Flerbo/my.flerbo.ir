@@ -19,6 +19,16 @@
                   :per-page="11"
                   :center-mode="true"
         >
+            <slide v-if="canReturn"
+                   class="item half-padding relative"
+            >
+                <div class="spinner" />
+                <div class="item-content row align-content-middle align-content-center full-height half-padding relative"
+                     @click="clicked()"
+                >
+                    <span>عوض کردن دسته‌بندی</span>
+                </div>
+            </slide>
             <slide v-for="item in items"
                    class="item half-padding relative"
                    :key="item.id"
@@ -53,6 +63,10 @@ export default {
         loading: {
             type: Boolean,
             default: true,
+        },
+        canReturn: {
+            type: Boolean,
+            default: false,
         },
     },
     methods: {

@@ -6,7 +6,7 @@
         >
             <label :class="['type_select-item box padding pointer', {active: picked === item.name}, {disabled: item.disabled}]">
                 <svg-icon class="icon"
-                          :name="item.name"
+                          :name="item.icon || item.name"
                 />
                 <input v-model="picked"
                        type="radio"
@@ -26,7 +26,8 @@ export default {
                 name: 'laptop',
             },
             {
-                name: 'sticker',
+                name: 'category',
+                icon: 'sticker',
             },
         ],
     }),
