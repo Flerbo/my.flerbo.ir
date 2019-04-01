@@ -121,6 +121,7 @@ export default {
                 will-change: opacity;
                 &-loaded {
                     opacity: 1;
+                    filter: drop-shadow(1px 1px 1px color($black a(19%)));
                     + .spinner {
                         display: none;
                     }
