@@ -20,7 +20,7 @@
                 <div v-show="laptops.selected"
                      class="sticker-wrapper gap"
                 >
-                    <canvas id="canvas" />
+                    <canvas id="canvas"/>
                 </div>
                 <!-- <h3 dir="ltr" lang="en">Lenovo Thinkpad L570 - 15.6"</h3> -->
             </div>
@@ -115,18 +115,20 @@ export default {
     },
     methods: {
         initCanvas() {
-            this.canvas = new fabric.Canvas('canvas');
-            fabric.Group.prototype._controlsVisibility = {
-                tl: false,
-                tr: false,
-                br: false,
-                bl: false,
-                ml: false,
-                mt: false,
-                mr: false,
-                mb: false,
-                mtr: true,
-            };
+            if (!this.canvas) {
+                this.canvas = new fabric.Canvas('canvas');
+                fabric.Group.prototype._controlsVisibility = {
+                    tl: false,
+                    tr: false,
+                    br: false,
+                    bl: false,
+                    ml: false,
+                    mt: false,
+                    mr: false,
+                    mb: false,
+                    mtr: true,
+                };
+            }
         },
         updateInchToPixelConstant() {
             if (this.$refs.laptop && this.laptops.selected) {
@@ -263,5 +265,10 @@ export default {
         @util position(absolute, 0 0 0 0);
         padding-top: 20px;
         padding-bottom: 190px;
+    }
+</style>
+<style>
+    .canvas-container {
+        margin: auto;
     }
 </style>

@@ -37,11 +37,12 @@
                 <div class="item-content row align-content-middle align-content-center full-height half-padding relative"
                      @click="clicked(item)"
                 >
-                    <img class="code"
-                         :src="item.image_url"
-                         :alt="item.title"
-                         :title="item.title"
-                    >
+                    <v-lazy-image class="code"
+                                  :src="item.image_url"
+                                  :alt="item.title"
+                                  :title="item.title"
+                    />
+                    <div class="spinner" />
                 </div>
             </slide>
         </carousel>
@@ -112,9 +113,18 @@ export default {
             &:hover {
                 background-color: $light-2-grey;
             }
-            img {
+            .v-lazy-image {
                 @util size(auto, 100%);
                 display: block;
+                opacity: 0.2;
+                transition: opacity 1.6s;
+                will-change: opacity;
+                &-loaded {
+                    opacity: 1;
+                    + .spinner {
+                        display: none;
+                    }
+                }
             }
         }
     }
