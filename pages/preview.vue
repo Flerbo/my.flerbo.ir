@@ -20,7 +20,7 @@
                 <div v-show="laptops.selected"
                      class="sticker-wrapper gap"
                 >
-                    <canvas id="canvas"/>
+                    <canvas id="canvas" />
                 </div>
                 <!-- <h3 dir="ltr" lang="en">Lenovo Thinkpad L570 - 15.6"</h3> -->
             </div>

@@ -103,3 +103,8 @@
 .relative {
     position: relative;
 }
+
+img.responsive {
+    @util size(100%, auto);
+    display: block;
+}

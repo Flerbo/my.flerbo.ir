@@ -57,12 +57,12 @@ h3, .h3,
 h4, .h4,
 h5, .h5,
 h6, .h6 {
-	font-family: Lalezar, arial;
+	font-family: Vazir, arial;
 }
 
 .link,
 .link.code {
-	color: $dark-grey;
+	color: $sazito;
 	transition: color $smooth-transition;
 	&:hover {
 		color: $sazito;
@@ -101,4 +101,17 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
     transition: background-color 5000s ease-in-out 0s;
+}
+
+.button {
+	background-color: $sazito;
+    border-radius: $round-radius;
+    box-shadow: 0 3px 6px rgba(229,170,97,.15),
+				0 1px 3px rgba(0,0,0,.11);
+	color: $white;
+	display: inline-block;
+	font-size: 16px;
+	padding: 0 20px;
+	line-height: 45px;
+	text-decoration: none !important;
 }

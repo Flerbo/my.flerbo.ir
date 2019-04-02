@@ -1,13 +1,17 @@
 <template>
     <section class="container">
-        <div class="row">
-            <div class="all-auto">
-                <h1>لپتاپ خودت رو با فلربو بچین</h1>
-            </div>
-        </div>
+        <intro />
     </section>
 </template>
 <script>
+import Intro from '~/components/index/intro';
+
 export default {
+    components: {
+        Intro,
+    },
 };
 </script>
+<style lang="postcss" scoped>
+    @import '../assets/styles/vars/all.css';
+</style>

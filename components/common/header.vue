@@ -12,12 +12,12 @@
         <nav class="container box">
             <div class="row full-height align-content-middle">
                 <div class="all-auto">
-                    <a href="https://flerbo.ir/?utm_source=myflerbo&utm_campaign=mvp&utm_content=logo" class="link">
+                    <a href="https://flerbo.ir/?utm_source=myflerbo&utm_campaign=v1&utm_content=header_logo" class="no-link">
                         <img src="logo.png" alt="فلربو">
                     </a>
                 </div>
                 <div class="all-auto align-left">
-                    <a href="https://flerbo.ir/?utm_source=myflerbo&utm_campaign=mvp&utm_content=desktop_back" class="link">بازگشت به فروشگاه</a>
+                    <a href="https://flerbo.ir/?utm_source=myflerbo&utm_campaign=v1&utm_content=header_return" class="no-link">بازگشت به فروشگاه</a>
                 </div>
             </div>
         </nav>

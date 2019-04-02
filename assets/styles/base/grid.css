@@ -46,3 +46,18 @@ body {
 .all-auto {
     flex-grow: 1;
 }
+
+.desktop-5 {
+    flex: 0 0 41.6667%;
+    max-width: 41.6667%;
+}
+
+.desktop-7 {
+    flex: 0 0 58.3333%;
+    max-width: 58.3333%;
+}
+
+.desktop-10 {
+    flex: 0 0 83.3333%;
+    max-width: 83.3333%;
+}
