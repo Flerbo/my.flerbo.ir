@@ -1,5 +1,5 @@
 <template>
-    <div class="container build">
+    <div class="container preview">
         <div class="relative full-height align-center">
             <div class="laptop-wrapper gap full-height">
                 <v-lazy-image v-if="laptops.selected"
@@ -49,10 +49,10 @@
     </div>
 </template>
 <script>
-import MainController from '~/components/build/controllers/main';
-import SubController from '~/components/build/controllers/sub';
-import Reset from '~/components/build/controllers/reset';
-import Order from '~/components/build/controllers/order';
+import MainController from '~/components/preview/controllers/main';
+import SubController from '~/components/preview/controllers/sub';
+import Reset from '~/components/preview/controllers/reset';
+import Order from '~/components/preview/controllers/order';
 import {
     CATEGORIES,
     LAPTOPS,
@@ -218,7 +218,7 @@ export default {
 </script>
 <style lang="postcss" scoped>
     @import '../assets/styles/vars/all.css';
-    .build {
+    .preview {
         height: 100vh;
         margin-top: -160px;
         padding-top: 160px;
