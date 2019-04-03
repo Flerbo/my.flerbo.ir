@@ -47,6 +47,11 @@ body {
     flex-grow: 1;
 }
 
+.desktop-4 {
+    flex: 0 0 33.3333%;
+    max-width: 33.3333%;
+}
+
 .desktop-5 {
     flex: 0 0 41.6667%;
     max-width: 41.6667%;
@@ -60,4 +65,9 @@ body {
 .desktop-10 {
     flex: 0 0 83.3333%;
     max-width: 83.3333%;
+}
+
+.all-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
 }
