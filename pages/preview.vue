@@ -60,6 +60,7 @@ import {
 import { fabric } from 'fabric';
 
 export default {
+    layout: 'no-footer',
     components: {
         MainController,
         SubController,

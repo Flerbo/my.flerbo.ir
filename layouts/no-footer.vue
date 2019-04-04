@@ -2,17 +2,14 @@
     <div>
         <f-header />
         <nuxt />
-        <f-footer />
     </div>
 </template>
 <script>
 import FHeader from '~/components/common/header';
-import FFooter from '~/components/common/footer';
 
 export default {
     components: {
         FHeader,
-        FFooter,
     },
 };
 </script>

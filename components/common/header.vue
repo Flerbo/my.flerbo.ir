@@ -12,9 +12,9 @@
         <nav class="container box">
             <div class="row full-height align-content-middle">
                 <div class="all-auto">
-                    <a href="https://flerbo.ir/?utm_source=myflerbo&utm_campaign=v1&utm_content=header_logo" class="no-link">
+                    <nuxt-link :to="{ name: 'index' }">
                         <img src="logo.png" alt="فلربو">
-                    </a>
+                    </nuxt-link>
                 </div>
                 <div class="all-auto align-left">
                     <a href="https://flerbo.ir/?utm_source=myflerbo&utm_campaign=v1&utm_content=header_return" class="no-link">بازگشت به فروشگاه</a>
