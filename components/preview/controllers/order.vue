@@ -1,20 +1,11 @@
 <template>
-    <div class="reset row align-content-middle half-gutter gap"
-         @click="reset"
-    >
+    <div class="reset row align-content-middle half-gutter gap">
         <svg-icon name="next" />
-        <span>ثبت سفارش</span>
+        <a href="https://flerbo.ir/?utm_source=myflerbo&utm_campaign=v1&utm_content=order" class="no-link" target="_blank">
+            ثبت سفارش
+        </a>
     </div>
 </template>
-<script>
-export default {
-    methods: {
-        reset() {
-            this.$emit('click');
-        },
-    },
-};
-</script>
 <style lang="postcss" scoped>
     @import '../../../assets/styles/vars/all.css';
     .reset {
