@@ -114,4 +114,11 @@ input:-webkit-autofill:active {
 	padding: 0 20px;
 	line-height: 45px;
 	text-decoration: none !important;
+	&:hover,
+	&:focus {
+		background-color: color($sazito b(20%));
+	}
+	&:active {
+		background-color: color($sazito w(20%));
+	}
 }
