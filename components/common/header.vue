@@ -13,7 +13,7 @@
             <div class="row full-height align-content-middle">
                 <div class="all-auto">
                     <nuxt-link :to="{ name: 'index' }">
-                        <img src="logo.png" alt="فلربو">
+                        <img src="/logo.png" alt="فلربو">
                     </nuxt-link>
                 </div>
                 <div class="all-auto align-left">
